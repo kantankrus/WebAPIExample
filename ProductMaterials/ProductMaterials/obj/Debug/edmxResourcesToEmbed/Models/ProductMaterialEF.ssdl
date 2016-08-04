@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductMaterialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ProdID" />
+    </Key>
+    <Property Name="ProdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProdNum" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProdCode" Type="nchar" MaxLength="12" />
+    <Property Name="ProdDesc" Type="nvarchar" MaxLength="30" />
+    <Property Name="ProdSize" Type="smallint" />
+    <Property Name="ProdWeight" Type="int" />
+    <Property Name="ProdGrade" Type="char" MaxLength="2" />
+    <Property Name="ProdPack" Type="varchar" MaxLength="12" />
+    <Property Name="Commodity" Type="varchar" MaxLength="12" />
+    <Property Name="ProductType" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ProdCompany" Type="tinyint" Nullable="false" />
+    <Property Name="CasesPerPallet" Type="smallint" />
+    <Property Name="Class" Type="nchar" MaxLength="2" />
+    <Property Name="MATCATEGORY" Type="nchar" MaxLength="4" />
+    <Property Name="Length" Type="numeric" Precision="9" Scale="2" />
+    <Property Name="Width" Type="numeric" Precision="9" Scale="2" />
+    <Property Name="Height" Type="numeric" Precision="9" Scale="2" />
+    <Property Name="ManufacturerCode" Type="nchar" MaxLength="6" />
+    <Property Name="SpecComments" Type="nchar" MaxLength="255" />
+    <Property Name="UPCCODE" Type="nchar" MaxLength="15" />
+    <Property Name="UPCCODE2" Type="nchar" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ProductMaterial.dbo.ProductImagePaths' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductImagePaths">
+    <Key>
+      <PropertyRef Name="ImageProdNum" />
+    </Key>
+    <Property Name="Image1Path" Type="nchar" MaxLength="190" />
+    <Property Name="Image2Path" Type="nchar" MaxLength="190" />
+    <Property Name="Image3Path" Type="nchar" MaxLength="190" />
+    <Property Name="Image4Path" Type="nchar" MaxLength="190" />
+    <Property Name="Image5Path" Type="nchar" MaxLength="190" />
+    <Property Name="Image1Orig" Type="nchar" MaxLength="190" />
+    <Property Name="Image2Orig" Type="nchar" MaxLength="190" />
+    <Property Name="Image3Orig" Type="nchar" MaxLength="190" />
+    <Property Name="Image4Orig" Type="nchar" MaxLength="190" />
+    <Property Name="Image5Orig" Type="nchar" MaxLength="190" />
+    <Property Name="ImageProdNum" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImageCompany" Type="nchar" MaxLength="4" />
+  </EntityType>
+  <Function Name="sp_returnProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProdNum" Type="nchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProductMaterialModelStoreContainer">
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductImagePaths" EntityType="Self.ProductImagePaths" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ProductImagePaths].[Image1Path] AS [Image1Path], 
+[ProductImagePaths].[Image2Path] AS [Image2Path], 
+[ProductImagePaths].[Image3Path] AS [Image3Path], 
+[ProductImagePaths].[Image4Path] AS [Image4Path], 
+[ProductImagePaths].[Image5Path] AS [Image5Path], 
+[ProductImagePaths].[Image1Orig] AS [Image1Orig], 
+[ProductImagePaths].[Image2Orig] AS [Image2Orig], 
+[ProductImagePaths].[Image3Orig] AS [Image3Orig], 
+[ProductImagePaths].[Image4Orig] AS [Image4Orig], 
+[ProductImagePaths].[Image5Orig] AS [Image5Orig], 
+[ProductImagePaths].[ImageProdNum] AS [ImageProdNum], 
+[ProductImagePaths].[ImageCompany] AS [ImageCompany]
+FROM [dbo].[ProductImagePaths] AS [ProductImagePaths]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

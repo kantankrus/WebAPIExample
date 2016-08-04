@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductMaterialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProductMaterialEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="products" EntityType="ProductMaterialModel.product" />
+    <EntitySet Name="ProductImagePaths" EntityType="ProductMaterialModel.ProductImagePath" />
+    <FunctionImport Name="sp_returnProducts" ReturnType="Collection(ProductMaterialModel.sp_returnProducts_Result)">
+      <Parameter Name="ProdNum" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ProdID" />
+    </Key>
+    <Property Name="ProdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProdNum" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ProdCode" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="ProdDesc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ProdSize" Type="Int16" />
+    <Property Name="ProdWeight" Type="Int32" />
+    <Property Name="ProdGrade" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="ProdPack" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Commodity" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="ProductType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ProdCompany" Type="Byte" Nullable="false" />
+    <Property Name="CasesPerPallet" Type="Int16" />
+    <Property Name="Class" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="MATCATEGORY" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="Length" Type="Decimal" Precision="9" Scale="2" />
+    <Property Name="Width" Type="Decimal" Precision="9" Scale="2" />
+    <Property Name="Height" Type="Decimal" Precision="9" Scale="2" />
+    <Property Name="ManufacturerCode" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Name="SpecComments" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Name="UPCCODE" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="UPCCODE2" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ProductImagePath">
+    <Key>
+      <PropertyRef Name="ImageProdNum" />
+    </Key>
+    <Property Name="Image1Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image2Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image3Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image4Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image5Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image1Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image2Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image3Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image4Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="Image5Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+    <Property Name="ImageProdNum" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ImageCompany" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="sp_returnProducts_Result">
+    <Property Type="Int32" Name="ProdID" Nullable="false" />
+    <Property Type="String" Name="ProdNum" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ProdCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProdDesc" Nullable="true" MaxLength="30" />
+    <Property Type="Int16" Name="ProdSize" Nullable="true" />
+    <Property Type="Int32" Name="ProdWeight" Nullable="true" />
+    <Property Type="String" Name="ProdGrade" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="ProdPack" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="Commodity" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProductType" Nullable="false" MaxLength="1" />
+    <Property Type="Byte" Name="ProdCompany" Nullable="false" />
+    <Property Type="Int16" Name="CasesPerPallet" Nullable="true" />
+    <Property Type="String" Name="Class" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="MATCATEGORY" Nullable="true" MaxLength="4" />
+    <Property Type="Decimal" Name="Length" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="Decimal" Name="Width" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="Decimal" Name="Height" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="String" Name="ManufacturerCode" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="SpecComments" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="UPCCODE" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="UPCCODE2" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Image1Orig" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image1Path" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image2Path" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image3Path" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image4Path" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image5Path" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image2Orig" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image3Orig" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image4Orig" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="Image5Orig" Nullable="true" MaxLength="190" />
+    <Property Type="String" Name="ImageProdNum" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImageCompany" Nullable="true" MaxLength="4" />
+  </ComplexType>
+</Schema>

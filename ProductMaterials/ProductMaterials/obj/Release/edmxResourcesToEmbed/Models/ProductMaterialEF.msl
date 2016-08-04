@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProductMaterialModelStoreContainer" CdmEntityContainer="ProductMaterialEntities">
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="ProductMaterialModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="UPCCODE2" ColumnName="UPCCODE2" />
+          <ScalarProperty Name="UPCCODE" ColumnName="UPCCODE" />
+          <ScalarProperty Name="SpecComments" ColumnName="SpecComments" />
+          <ScalarProperty Name="ManufacturerCode" ColumnName="ManufacturerCode" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="MATCATEGORY" ColumnName="MATCATEGORY" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="CasesPerPallet" ColumnName="CasesPerPallet" />
+          <ScalarProperty Name="ProdCompany" ColumnName="ProdCompany" />
+          <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+          <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+          <ScalarProperty Name="ProdPack" ColumnName="ProdPack" />
+          <ScalarProperty Name="ProdGrade" ColumnName="ProdGrade" />
+          <ScalarProperty Name="ProdWeight" ColumnName="ProdWeight" />
+          <ScalarProperty Name="ProdSize" ColumnName="ProdSize" />
+          <ScalarProperty Name="ProdDesc" ColumnName="ProdDesc" />
+          <ScalarProperty Name="ProdCode" ColumnName="ProdCode" />
+          <ScalarProperty Name="ProdNum" ColumnName="ProdNum" />
+          <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImagePaths">
+      <EntityTypeMapping TypeName="ProductMaterialModel.ProductImagePath">
+        <MappingFragment StoreEntitySet="ProductImagePaths">
+          <ScalarProperty Name="ImageCompany" ColumnName="ImageCompany" />
+          <ScalarProperty Name="ImageProdNum" ColumnName="ImageProdNum" />
+          <ScalarProperty Name="Image5Orig" ColumnName="Image5Orig" />
+          <ScalarProperty Name="Image4Orig" ColumnName="Image4Orig" />
+          <ScalarProperty Name="Image3Orig" ColumnName="Image3Orig" />
+          <ScalarProperty Name="Image2Orig" ColumnName="Image2Orig" />
+          <ScalarProperty Name="Image1Orig" ColumnName="Image1Orig" />
+          <ScalarProperty Name="Image5Path" ColumnName="Image5Path" />
+          <ScalarProperty Name="Image4Path" ColumnName="Image4Path" />
+          <ScalarProperty Name="Image3Path" ColumnName="Image3Path" />
+          <ScalarProperty Name="Image2Path" ColumnName="Image2Path" />
+          <ScalarProperty Name="Image1Path" ColumnName="Image1Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_returnProducts" FunctionName="ProductMaterialModel.Store.sp_returnProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProductMaterialModel.sp_returnProducts_Result">
+          <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+          <ScalarProperty Name="ProdNum" ColumnName="ProdNum" />
+          <ScalarProperty Name="ProdCode" ColumnName="ProdCode" />
+          <ScalarProperty Name="ProdDesc" ColumnName="ProdDesc" />
+          <ScalarProperty Name="ProdSize" ColumnName="ProdSize" />
+          <ScalarProperty Name="ProdWeight" ColumnName="ProdWeight" />
+          <ScalarProperty Name="ProdGrade" ColumnName="ProdGrade" />
+          <ScalarProperty Name="ProdPack" ColumnName="ProdPack" />
+          <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+          <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+          <ScalarProperty Name="ProdCompany" ColumnName="ProdCompany" />
+          <ScalarProperty Name="CasesPerPallet" ColumnName="CasesPerPallet" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="MATCATEGORY" ColumnName="MATCATEGORY" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="ManufacturerCode" ColumnName="ManufacturerCode" />
+          <ScalarProperty Name="SpecComments" ColumnName="SpecComments" />
+          <ScalarProperty Name="UPCCODE" ColumnName="UPCCODE" />
+          <ScalarProperty Name="UPCCODE2" ColumnName="UPCCODE2" />
+          <ScalarProperty Name="Image1Orig" ColumnName="Image1Orig" />
+          <ScalarProperty Name="Image1Path" ColumnName="Image1Path" />
+          <ScalarProperty Name="Image2Path" ColumnName="Image2Path" />
+          <ScalarProperty Name="Image3Path" ColumnName="Image3Path" />
+          <ScalarProperty Name="Image4Path" ColumnName="Image4Path" />
+          <ScalarProperty Name="Image5Path" ColumnName="Image5Path" />
+          <ScalarProperty Name="Image2Orig" ColumnName="Image2Orig" />
+          <ScalarProperty Name="Image3Orig" ColumnName="Image3Orig" />
+          <ScalarProperty Name="Image4Orig" ColumnName="Image4Orig" />
+          <ScalarProperty Name="Image5Orig" ColumnName="Image5Orig" />
+          <ScalarProperty Name="ImageProdNum" ColumnName="ImageProdNum" />
+          <ScalarProperty Name="ImageCompany" ColumnName="ImageCompany" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

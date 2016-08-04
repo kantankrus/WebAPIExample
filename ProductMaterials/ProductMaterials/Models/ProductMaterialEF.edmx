@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProductMaterialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="ProdID" />
+          </Key>
+          <Property Name="ProdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProdNum" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProdCode" Type="nchar" MaxLength="12" />
+          <Property Name="ProdDesc" Type="nvarchar" MaxLength="30" />
+          <Property Name="ProdSize" Type="smallint" />
+          <Property Name="ProdWeight" Type="int" />
+          <Property Name="ProdGrade" Type="char" MaxLength="2" />
+          <Property Name="ProdPack" Type="varchar" MaxLength="12" />
+          <Property Name="Commodity" Type="varchar" MaxLength="12" />
+          <Property Name="ProductType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ProdCompany" Type="tinyint" Nullable="false" />
+          <Property Name="CasesPerPallet" Type="smallint" />
+          <Property Name="Class" Type="nchar" MaxLength="2" />
+          <Property Name="MATCATEGORY" Type="nchar" MaxLength="4" />
+          <Property Name="Length" Type="numeric" Precision="9" Scale="2" />
+          <Property Name="Width" Type="numeric" Precision="9" Scale="2" />
+          <Property Name="Height" Type="numeric" Precision="9" Scale="2" />
+          <Property Name="ManufacturerCode" Type="nchar" MaxLength="6" />
+          <Property Name="SpecComments" Type="nchar" MaxLength="255" />
+          <Property Name="UPCCODE" Type="nchar" MaxLength="15" />
+          <Property Name="UPCCODE2" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProductMaterial.dbo.ProductImagePaths' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductImagePaths">
+          <Key>
+            <PropertyRef Name="ImageProdNum" />
+          </Key>
+          <Property Name="Image1Path" Type="nchar" MaxLength="190" />
+          <Property Name="Image2Path" Type="nchar" MaxLength="190" />
+          <Property Name="Image3Path" Type="nchar" MaxLength="190" />
+          <Property Name="Image4Path" Type="nchar" MaxLength="190" />
+          <Property Name="Image5Path" Type="nchar" MaxLength="190" />
+          <Property Name="Image1Orig" Type="nchar" MaxLength="190" />
+          <Property Name="Image2Orig" Type="nchar" MaxLength="190" />
+          <Property Name="Image3Orig" Type="nchar" MaxLength="190" />
+          <Property Name="Image4Orig" Type="nchar" MaxLength="190" />
+          <Property Name="Image5Orig" Type="nchar" MaxLength="190" />
+          <Property Name="ImageProdNum" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImageCompany" Type="nchar" MaxLength="4" />
+        </EntityType>
+        <Function Name="sp_returnProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProdNum" Type="nchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProductMaterialModelStoreContainer">
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImagePaths" EntityType="Self.ProductImagePaths" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ProductImagePaths].[Image1Path] AS [Image1Path], 
+[ProductImagePaths].[Image2Path] AS [Image2Path], 
+[ProductImagePaths].[Image3Path] AS [Image3Path], 
+[ProductImagePaths].[Image4Path] AS [Image4Path], 
+[ProductImagePaths].[Image5Path] AS [Image5Path], 
+[ProductImagePaths].[Image1Orig] AS [Image1Orig], 
+[ProductImagePaths].[Image2Orig] AS [Image2Orig], 
+[ProductImagePaths].[Image3Orig] AS [Image3Orig], 
+[ProductImagePaths].[Image4Orig] AS [Image4Orig], 
+[ProductImagePaths].[Image5Orig] AS [Image5Orig], 
+[ProductImagePaths].[ImageProdNum] AS [ImageProdNum], 
+[ProductImagePaths].[ImageCompany] AS [ImageCompany]
+FROM [dbo].[ProductImagePaths] AS [ProductImagePaths]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductMaterialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProductMaterialEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="products" EntityType="ProductMaterialModel.product" />
+          <EntitySet Name="ProductImagePaths" EntityType="ProductMaterialModel.ProductImagePath" />
+          <FunctionImport Name="sp_returnProducts" ReturnType="Collection(ProductMaterialModel.sp_returnProducts_Result)">
+            <Parameter Name="ProdNum" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="ProdID" />
+          </Key>
+          <Property Name="ProdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProdNum" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ProdCode" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="ProdDesc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ProdSize" Type="Int16" />
+          <Property Name="ProdWeight" Type="Int32" />
+          <Property Name="ProdGrade" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ProdPack" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Commodity" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ProdCompany" Type="Byte" Nullable="false" />
+          <Property Name="CasesPerPallet" Type="Int16" />
+          <Property Name="Class" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="MATCATEGORY" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="Length" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Width" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ManufacturerCode" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="SpecComments" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="UPCCODE" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="UPCCODE2" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductImagePath">
+          <Key>
+            <PropertyRef Name="ImageProdNum" />
+          </Key>
+          <Property Name="Image1Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image2Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image3Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image4Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image5Path" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image1Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image2Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image3Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image4Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="Image5Orig" Type="String" MaxLength="190" FixedLength="true" Unicode="true" />
+          <Property Name="ImageProdNum" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ImageCompany" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_returnProducts_Result">
+          <Property Type="Int32" Name="ProdID" Nullable="false" />
+          <Property Type="String" Name="ProdNum" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ProdCode" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="ProdDesc" Nullable="true" MaxLength="30" />
+          <Property Type="Int16" Name="ProdSize" Nullable="true" />
+          <Property Type="Int32" Name="ProdWeight" Nullable="true" />
+          <Property Type="String" Name="ProdGrade" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="ProdPack" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="Commodity" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="ProductType" Nullable="false" MaxLength="1" />
+          <Property Type="Byte" Name="ProdCompany" Nullable="false" />
+          <Property Type="Int16" Name="CasesPerPallet" Nullable="true" />
+          <Property Type="String" Name="Class" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="MATCATEGORY" Nullable="true" MaxLength="4" />
+          <Property Type="Decimal" Name="Length" Nullable="true" Precision="9" Scale="2" />
+          <Property Type="Decimal" Name="Width" Nullable="true" Precision="9" Scale="2" />
+          <Property Type="Decimal" Name="Height" Nullable="true" Precision="9" Scale="2" />
+          <Property Type="String" Name="ManufacturerCode" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="SpecComments" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="UPCCODE" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="UPCCODE2" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Image1Orig" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image1Path" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image2Path" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image3Path" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image4Path" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image5Path" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image2Orig" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image3Orig" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image4Orig" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="Image5Orig" Nullable="true" MaxLength="190" />
+          <Property Type="String" Name="ImageProdNum" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ImageCompany" Nullable="true" MaxLength="4" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductMaterialModelStoreContainer" CdmEntityContainer="ProductMaterialEntities">
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="ProductMaterialModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="UPCCODE2" ColumnName="UPCCODE2" />
+                <ScalarProperty Name="UPCCODE" ColumnName="UPCCODE" />
+                <ScalarProperty Name="SpecComments" ColumnName="SpecComments" />
+                <ScalarProperty Name="ManufacturerCode" ColumnName="ManufacturerCode" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="MATCATEGORY" ColumnName="MATCATEGORY" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="CasesPerPallet" ColumnName="CasesPerPallet" />
+                <ScalarProperty Name="ProdCompany" ColumnName="ProdCompany" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+                <ScalarProperty Name="ProdPack" ColumnName="ProdPack" />
+                <ScalarProperty Name="ProdGrade" ColumnName="ProdGrade" />
+                <ScalarProperty Name="ProdWeight" ColumnName="ProdWeight" />
+                <ScalarProperty Name="ProdSize" ColumnName="ProdSize" />
+                <ScalarProperty Name="ProdDesc" ColumnName="ProdDesc" />
+                <ScalarProperty Name="ProdCode" ColumnName="ProdCode" />
+                <ScalarProperty Name="ProdNum" ColumnName="ProdNum" />
+                <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImagePaths">
+            <EntityTypeMapping TypeName="ProductMaterialModel.ProductImagePath">
+              <MappingFragment StoreEntitySet="ProductImagePaths">
+                <ScalarProperty Name="ImageCompany" ColumnName="ImageCompany" />
+                <ScalarProperty Name="ImageProdNum" ColumnName="ImageProdNum" />
+                <ScalarProperty Name="Image5Orig" ColumnName="Image5Orig" />
+                <ScalarProperty Name="Image4Orig" ColumnName="Image4Orig" />
+                <ScalarProperty Name="Image3Orig" ColumnName="Image3Orig" />
+                <ScalarProperty Name="Image2Orig" ColumnName="Image2Orig" />
+                <ScalarProperty Name="Image1Orig" ColumnName="Image1Orig" />
+                <ScalarProperty Name="Image5Path" ColumnName="Image5Path" />
+                <ScalarProperty Name="Image4Path" ColumnName="Image4Path" />
+                <ScalarProperty Name="Image3Path" ColumnName="Image3Path" />
+                <ScalarProperty Name="Image2Path" ColumnName="Image2Path" />
+                <ScalarProperty Name="Image1Path" ColumnName="Image1Path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_returnProducts" FunctionName="ProductMaterialModel.Store.sp_returnProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProductMaterialModel.sp_returnProducts_Result">
+                <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+                <ScalarProperty Name="ProdNum" ColumnName="ProdNum" />
+                <ScalarProperty Name="ProdCode" ColumnName="ProdCode" />
+                <ScalarProperty Name="ProdDesc" ColumnName="ProdDesc" />
+                <ScalarProperty Name="ProdSize" ColumnName="ProdSize" />
+                <ScalarProperty Name="ProdWeight" ColumnName="ProdWeight" />
+                <ScalarProperty Name="ProdGrade" ColumnName="ProdGrade" />
+                <ScalarProperty Name="ProdPack" ColumnName="ProdPack" />
+                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProdCompany" ColumnName="ProdCompany" />
+                <ScalarProperty Name="CasesPerPallet" ColumnName="CasesPerPallet" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="MATCATEGORY" ColumnName="MATCATEGORY" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="ManufacturerCode" ColumnName="ManufacturerCode" />
+                <ScalarProperty Name="SpecComments" ColumnName="SpecComments" />
+                <ScalarProperty Name="UPCCODE" ColumnName="UPCCODE" />
+                <ScalarProperty Name="UPCCODE2" ColumnName="UPCCODE2" />
+                <ScalarProperty Name="Image1Orig" ColumnName="Image1Orig" />
+                <ScalarProperty Name="Image1Path" ColumnName="Image1Path" />
+                <ScalarProperty Name="Image2Path" ColumnName="Image2Path" />
+                <ScalarProperty Name="Image3Path" ColumnName="Image3Path" />
+                <ScalarProperty Name="Image4Path" ColumnName="Image4Path" />
+                <ScalarProperty Name="Image5Path" ColumnName="Image5Path" />
+                <ScalarProperty Name="Image2Orig" ColumnName="Image2Orig" />
+                <ScalarProperty Name="Image3Orig" ColumnName="Image3Orig" />
+                <ScalarProperty Name="Image4Orig" ColumnName="Image4Orig" />
+                <ScalarProperty Name="Image5Orig" ColumnName="Image5Orig" />
+                <ScalarProperty Name="ImageProdNum" ColumnName="ImageProdNum" />
+                <ScalarProperty Name="ImageCompany" ColumnName="ImageCompany" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
